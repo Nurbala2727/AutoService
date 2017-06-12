@@ -20,7 +20,7 @@ public class Datenbank {
     public Connection getConnection()throws Exception{
         
         try {
-            conn = DriverManager.getConnection(url,"roor","");
+            conn = DriverManager.getConnection(url,"root","");
             return conn;
         } catch (Exception e) {
             throw e;
