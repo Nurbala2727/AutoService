@@ -14,13 +14,15 @@
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    
+    
     <servlet>
         <servlet-name>Auto REST Service</servlet-name>
         <servlet-class>com.sun.jersey.server.impl.container.servlet.ServletAdaptor</servlet-class>
-<!--        <init-param>
-            <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>AutoServiceIHKGfI</param-value>
-        </init-param>-->
+       <init-param>
+        <param-name>jersey.config.server.property.packages</param-name>
+        <param-value>rest</param-value>
+    </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>

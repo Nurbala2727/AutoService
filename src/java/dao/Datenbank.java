@@ -15,7 +15,7 @@ import java.sql.DriverManager;
 public class Datenbank {
     
     private Connection conn;
-    private String url = "jdbc:mysql://127.0.0.1:3306/autoservice";
+    private String url = "jdbc:mysql://localhost:3306/kfzwerkstatt";
     
     public Connection getConnection()throws Exception{
         
