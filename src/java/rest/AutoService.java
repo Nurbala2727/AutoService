@@ -24,15 +24,16 @@ public class AutoService {
 
     @GET
     @Path("/liste")
-    @Produces("application/json")
+    //@Produces("application/json")
+    @Produces(MediaType.TEXT_PLAIN)
     public String getAutoListe() {
         String autos = "";
         ArrayList<Auto> autoListe = new ArrayList<>();
 
         try {
             autoListe = new Zugriffsverwaltung().getAutoListe();
-            Gson gson = new Gson();
-            autos = gson.toJson(autoListe);
+            //Gson gson = new Gson();
+            //autos = gson.toJson(autoListe);
         } catch (Exception e) {
 
         }
@@ -40,7 +41,8 @@ public class AutoService {
             autos = autos + "..." + a.toString();
         }
         
-        return autos;
+       // return autos;
+        return "hallo i bims dem denis";
     }
 
     @GET

@@ -20,7 +20,7 @@ import java.sql.Statement;
  */
 public class DBZugriff {
 
-    public ArrayList<Auto> getAutos(Connection conn) throws SQLException {
+    public ArrayList<Auto> getAutoListe(Connection conn) throws SQLException {
         ArrayList<Auto> autoliste = new ArrayList<>();
         /*PreparedStatement pstm = conn.prepareStatement("SELECT * FROM Auto");
         ResultSet rs = pstm.executeQuery();
@@ -32,7 +32,7 @@ public class DBZugriff {
         try {
             while (rs.next()) {
                 Auto auto = new Auto();
-                auto.setFahrgestellnummer(rs.getString(1));
+                auto.setFahrgestellnummer(rs.getInt(1));
                 auto.setHersteller(rs.getString(2));
                 auto.setModell(rs.getString(3));
                 auto.setFarbe(rs.getString(4));
@@ -46,6 +46,11 @@ public class DBZugriff {
         return autoliste;
 
     }
+    
+    
+    
+    
+    
     public Auto getAuto(Connection conn, int fgnr) throws SQLException {
          
         Auto auto = new Auto();
@@ -62,7 +67,7 @@ public class DBZugriff {
        
             while (rs.next()) {
                 
-                auto.setFahrgestellnummer(rs.getString(1));
+                auto.setFahrgestellnummer(rs.getInt(1));
                 auto.setHersteller(rs.getString(2));
                 auto.setModell(rs.getString(3));
                 auto.setFarbe(rs.getString(4));

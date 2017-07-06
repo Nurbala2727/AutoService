@@ -25,7 +25,7 @@ public class Zugriffsverwaltung {
         Datenbank db = new Datenbank();
         Connection conn = db.getConnection();
         DBZugriff dbz = new DBZugriff();
-        autoliste = dbz.getAutos(conn);
+        autoliste = dbz.getAutoListe(conn);
         return autoliste;
         
     }
