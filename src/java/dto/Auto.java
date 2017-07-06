@@ -11,40 +11,24 @@ package dto;
  */
 public class Auto {
     
+   private String fahrgestellnummer;
     private String hersteller;
-    private String modelname;
-    private String fahrgestellnummer; 
-    private String kennzeichen;
+    private String modell;
+    private String farbe;
+    private int ps;
     private String halter;
-    private int kW;
-    
-    public Auto(){
-        
+
+    public Auto() {
+
     }
 
-    public Auto(String hersteller, String modelname, String fahrgestellnummer, String kennzeichen, String halter, int kW) {
-        this.hersteller = hersteller;
-        this.modelname = modelname;
+    public Auto(String fahrgestellnummer, String hersteller, String modell, String farbe, int ps, String halter) {
         this.fahrgestellnummer = fahrgestellnummer;
-        this.kennzeichen = kennzeichen;
-        this.halter = halter;
-        this.kW = kW;
-    }
-
-    public String getHersteller() {
-        return hersteller;
-    }
-
-    public void setHersteller(String hersteller) {
         this.hersteller = hersteller;
-    }
-
-    public String getModelname() {
-        return modelname;
-    }
-
-    public void setModelname(String modelname) {
-        this.modelname = modelname;
+        this.modell = modell;
+        this.farbe = farbe;
+        this.ps = ps;
+        this.halter = halter;
     }
 
     public String getFahrgestellnummer() {
@@ -55,14 +39,40 @@ public class Auto {
         this.fahrgestellnummer = fahrgestellnummer;
     }
 
-    public String getKennzeichen() {
-        return kennzeichen;
+    public String getHersteller() {
+        return hersteller;
     }
 
-    public void setKennzeichen(String kennzeichen) {
-        this.kennzeichen = kennzeichen;
+    public void setHersteller(String hersteller) {
+        this.hersteller = hersteller;
     }
 
+    public String getModell() {
+        return modell;
+    }
+
+    public void setModell(String modell) {
+        this.modell = modell;
+    }
+
+    public String getFarbe() {
+        return farbe;
+    }
+
+    public void setFarbe(String farbe) {
+        this.farbe = farbe;
+    }
+
+    public int getPs() {
+        return ps;
+    }
+
+    public void setPs(int ps) {
+        this.ps = ps;
+    }
+
+    
+    
     public String getHalter() {
         return halter;
     }
@@ -70,16 +80,9 @@ public class Auto {
     public void setHalter(String halter) {
         this.halter = halter;
     }
-
-    public int getkW() {
-        return kW;
+    
+    @Override
+    public String toString() {
+        return fahrgestellnummer + ":" + hersteller + ":" + modell + ":" + farbe + ":" + ps+ ":" + halter;
     }
-
-    public void setkW(int kW) {
-        this.kW = kW;
-    }
-    
-    
-    
-    
 }

@@ -29,4 +29,17 @@ public class Zugriffsverwaltung {
         return autoliste;
         
     }
+    
+    public Auto getAuto(int fgnr) throws Exception{
+        
+        Auto auto = new Auto();
+        Datenbank db = new Datenbank();
+        Connection conn = db.getConnection();
+        DBZugriff dbz = new DBZugriff();
+        auto = dbz.getAuto(conn, fgnr);
+        return auto;
+        
+    }
+    
+    
 }

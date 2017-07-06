@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.Auto;
+import java.sql.Statement;
 
 /**
  *
@@ -21,25 +22,58 @@ public class DBZugriff {
 
     public ArrayList<Auto> getAutos(Connection conn) throws SQLException {
         ArrayList<Auto> autoliste = new ArrayList<>();
-        PreparedStatement pstm = conn.prepareStatement("SELECT * FROM Auto");
+        /*PreparedStatement pstm = conn.prepareStatement("SELECT * FROM Auto");
         ResultSet rs = pstm.executeQuery();
+         */
+        String query = "SELECT * FROM AUTO";
 
+        Statement stm = conn.createStatement();
+        ResultSet rs = stm.executeQuery(query);
         try {
             while (rs.next()) {
                 Auto auto = new Auto();
                 auto.setFahrgestellnummer(rs.getString(1));
-                auto.setHalter(rs.getNString(2));
-                auto.setHersteller(rs.getNString(3));
-                auto.setKennzeichen(rs.getString(4));
-                auto.setkW(rs.getInt(5));
-                auto.setModelname(rs.getString(6));
+                auto.setHersteller(rs.getString(2));
+                auto.setModell(rs.getString(3));
+                auto.setFarbe(rs.getString(4));
+                auto.setPs(rs.getInt(5));
+                auto.setHalter(rs.getString(6));
                 autoliste.add(auto);
             }
         } catch (SQLException e) {
-            
+
         }
         return autoliste;
 
     }
+    public Auto getAuto(Connection conn, int fgnr) throws SQLException {
+         
+        Auto auto = new Auto();
+       
+        try {
+            
+        String sqlString = "SELECT * FROM Auto "
+                + "WHERE "
+                + "FAHRGESTELLNUMMER="+fgnr; 
+        Statement stm = conn.createStatement();
+        
+        ResultSet rs = stm.executeQuery(sqlString);
+         
+       
+            while (rs.next()) {
+                
+                auto.setFahrgestellnummer(rs.getString(1));
+                auto.setHersteller(rs.getString(2));
+                auto.setModell(rs.getString(3));
+                auto.setFarbe(rs.getString(4));
+                auto.setPs(rs.getInt(5));
+                auto.setHalter(rs.getString(6));
+                
+            }
+        } catch (SQLException e) {
 
+        }
+        return auto;
+
+    }
 }
