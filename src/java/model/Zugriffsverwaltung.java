@@ -12,34 +12,34 @@ import java.util.ArrayList;
 import dto.Auto;
 import dao.DBZugriff;
 import dao.Datenbank;
+
 /**
  *
  * @author Denis
  */
 public class Zugriffsverwaltung {
-    
-    
-    public ArrayList<Auto> getAutoListe() throws Exception{
-        
+
+    public ArrayList<Auto> getAutoListe() throws Exception {
+
         ArrayList<Auto> autoliste = new ArrayList<>();
         Datenbank db = new Datenbank();
         Connection conn = db.getConnection();
         DBZugriff dbz = new DBZugriff();
         autoliste = dbz.getAutoListe(conn);
+
         return autoliste;
-        
+
     }
-    
-    public Auto getAuto(int fgnr) throws Exception{
-        
+
+    public Auto getAuto(int fgnr) throws Exception {
+
         Auto auto = new Auto();
         Datenbank db = new Datenbank();
         Connection conn = db.getConnection();
         DBZugriff dbz = new DBZugriff();
         auto = dbz.getAuto(conn, fgnr);
         return auto;
-        
+
     }
-    
-    
+
 }

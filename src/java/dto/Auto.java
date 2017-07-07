@@ -19,7 +19,7 @@ public class Auto {
     private String halter;
 
     public Auto() {
-
+        
     }
 
     public Auto(int fahrgestellnummer, String hersteller, String modell, String farbe, int ps, String halter) {

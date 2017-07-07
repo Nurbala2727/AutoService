@@ -21,7 +21,7 @@
         <servlet-class>com.sun.jersey.server.impl.container.servlet.ServletAdaptor</servlet-class>
        <init-param>
         <param-name>jersey.config.server.property.packages</param-name>
-        <param-value>rest</param-value>
+        <param-value>AutoServiceIHKGfI</param-value>
     </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

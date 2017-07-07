@@ -19,8 +19,17 @@ import java.sql.Statement;
  * @author Denis
  */
 public class DBZugriff {
-
+    
+    
+    
+    public DBZugriff(){
+      
+    }
+    
+    
     public ArrayList<Auto> getAutoListe(Connection conn) throws SQLException {
+        
+        
         ArrayList<Auto> autoliste = new ArrayList<>();
         /*PreparedStatement pstm = conn.prepareStatement("SELECT * FROM Auto");
         ResultSet rs = pstm.executeQuery();
@@ -41,8 +50,10 @@ public class DBZugriff {
                 autoliste.add(auto);
             }
         } catch (SQLException e) {
-
+            
         }
+        
+        
         return autoliste;
 
     }

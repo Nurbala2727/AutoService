@@ -15,16 +15,26 @@ import java.sql.DriverManager;
 public class Datenbank {
     
     private Connection conn;
-    private String url = "jdbc:mysql://127.0.0.1:3306/kfzwerkstatt";
+    private String url = "jdbc:mysql://localhost:3306/kfzwerkstatt";
     
+    
+    
+    public Datenbank(){
+        
+    }
     public Connection getConnection()throws Exception{
         
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+           
             conn = DriverManager.getConnection(url,"root","");
-            return conn;
+            
         } catch (Exception e) {
+            
+            e.printStackTrace();
             throw e;
         }
+        return conn;
     }
 
     public String getUrl() {

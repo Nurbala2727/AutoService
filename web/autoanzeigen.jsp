@@ -14,5 +14,8 @@
          <%@include file="WEB-INF/header.jsp" %>
         
         <%@include file="WEB-INF/nav.jsp" %>
+        
+        
+        
     </body>
 </html>
