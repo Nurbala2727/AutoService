@@ -12,6 +12,14 @@ and open the template in the editor.
     font-family: Arial;
 }
 
+#suche_auto{
+    text-transform: uppercase;
+    
+}
+.suche_inhalt{
+    border-bottom: 1px solid;
+    padding: 8px;
+}
 
 .inhalt	{ 
     

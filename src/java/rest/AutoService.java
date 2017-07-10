@@ -24,7 +24,6 @@ public class AutoService {
 
     @GET
     @Path("/liste")
-    //@Produces("application/json")
     @Produces({"application/json"})
     public String getAutoListe() {
         String autos = "";
@@ -37,8 +36,6 @@ public class AutoService {
         } catch (Exception e) {
 
         }
-
-        System.out.println(autos);
         return autos;
     }
 
@@ -46,7 +43,7 @@ public class AutoService {
     @Path("/auto/{fgnr}")
     @Produces({"application/json"})
     public String getAuto(@PathParam("fgnr") int fgnr) {
-        String autoS="";
+        String autoS = "";
         Auto auto = new Auto();
         try {
 
@@ -59,6 +56,32 @@ public class AutoService {
 
         return autoS;
     }
+
+    @GET
+    @Path("/anlegen/{fgnr}/{kennzeichen}/{halter}/{hersteller}/{model}/{farbe}/{ps}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String setAuto(@PathParam("fgnr") int fgnr,
+            @PathParam("kennzeichen") String kennzeichen,
+            @PathParam("halter") String halter,
+            @PathParam("hersteller") String hersteller,
+            @PathParam("model") String model,
+            @PathParam("farbe") String farbe,
+            @PathParam("ps") int ps) {
+
+        Auto a = new Auto(fgnr, hersteller, model, farbe, ps, halter);
+        try {
+            Zugriffsverwaltung zgriff = new Zugriffsverwaltung();
+            zgriff.setAuto(a);
+
+        } catch (Exception e) {
+        }
+        return "Auto wurde erstellt!";
+
+    }
+    
+    
+    
+    
 
     @GET
     @Path("/message")

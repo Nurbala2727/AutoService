@@ -42,4 +42,15 @@ public class Zugriffsverwaltung {
 
     }
 
+    public void setAuto(Auto a) throws Exception {
+
+        Auto auto = new Auto();
+        auto = a;
+        Datenbank db = new Datenbank();
+        Connection conn = db.getConnection();
+        DBZugriff dbz = new DBZugriff();
+        dbz.setAuto(a, conn);
+        
+    }
+
 }
