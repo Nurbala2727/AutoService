@@ -56,29 +56,7 @@ public class AutoService {
 
         return autoS;
     }
-
-    @GET
-    @Path("/anlegen/{fgnr}/{kennzeichen}/{halter}/{hersteller}/{model}/{farbe}/{ps}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String setAuto(@PathParam("fgnr") int fgnr,
-            @PathParam("kennzeichen") String kennzeichen,
-            @PathParam("halter") String halter,
-            @PathParam("hersteller") String hersteller,
-            @PathParam("model") String model,
-            @PathParam("farbe") String farbe,
-            @PathParam("ps") int ps) {
-
-        Auto a = new Auto(fgnr, kennzeichen, halter, hersteller, model, farbe, ps);
-        try {
-            Zugriffsverwaltung zgriff = new Zugriffsverwaltung();
-            zgriff.setAuto(a);
-
-        } catch (Exception e) {
-        }
-        return "Auto wurde erstellt!";
-
-    }
-
+  
     @POST
     @Path("/anlegen")
     @Produces(MediaType.TEXT_HTML)
@@ -96,7 +74,7 @@ public class AutoService {
 
         } catch (Exception e) {
         }
-        return "Auto wurde erstellt!" + "<a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Zurück zur Startseite</a>";
+        return "Auto wurde erstellt!" + "<br><br><a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Zurück zur Startseite</a>";
     }
 
     @POST

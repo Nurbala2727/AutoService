@@ -54,7 +54,7 @@
                     <input type="text" name="ps" id="ps" size="50"><br><br>
                     
                     <input type="submit" value="Ändern" >
-                    <input type="button" value="Löschen" onclick="remove()">
+                    
                 </fieldset>
             </form> 
             
