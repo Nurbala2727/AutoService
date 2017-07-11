@@ -68,7 +68,7 @@ public class AutoService {
             @PathParam("farbe") String farbe,
             @PathParam("ps") int ps) {
 
-        Auto a = new Auto(fgnr,kennzeichen,halter, hersteller, model, farbe, ps );
+        Auto a = new Auto(fgnr, kennzeichen, halter, hersteller, model, farbe, ps);
         try {
             Zugriffsverwaltung zgriff = new Zugriffsverwaltung();
             zgriff.setAuto(a);
@@ -78,42 +78,40 @@ public class AutoService {
         return "Auto wurde erstellt!";
 
     }
-    
-    
-    
+
     @POST
     @Path("/anlegen")
     @Produces(MediaType.TEXT_HTML)
     public String setAutoNeu(@FormParam("fahrgestellnummer") int fgnr,
-                           @FormParam("kennzeichen") String kennzeichen,
-                           @FormParam("halter") String halter,
-                           @FormParam("hersteller") String hersteller,
-                           @FormParam("modell") String modell,
-                           @FormParam("farbe") String farbe,
-                           @FormParam("ps") int ps){
-        Auto a = new Auto(fgnr,kennzeichen, halter, hersteller, modell, farbe, ps);
+            @FormParam("kennzeichen") String kennzeichen,
+            @FormParam("halter") String halter,
+            @FormParam("hersteller") String hersteller,
+            @FormParam("modell") String modell,
+            @FormParam("farbe") String farbe,
+            @FormParam("ps") int ps) {
+        Auto a = new Auto(fgnr, kennzeichen, halter, hersteller, modell, farbe, ps);
         try {
             Zugriffsverwaltung zgriff = new Zugriffsverwaltung();
             zgriff.setAuto(a);
 
         } catch (Exception e) {
         }
-        return "Auto wurde erstellt!"+"<a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Zurück zur Startseite</a>";
+        return "Auto wurde erstellt!" + "<a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Zurück zur Startseite</a>";
     }
-    
+
     @POST
     @Path("/update")
     @Produces(MediaType.TEXT_HTML)
     public String updateAuto(@FormParam("id") int id,
-                           @FormParam("fahrgestellnummer") int fgnr,
-                           @FormParam("kennzeichen") String kennzeichen,
-                           @FormParam("halter") String halter,
-                           @FormParam("hersteller") String hersteller,
-                           @FormParam("modell") String modell,
-                           @FormParam("farbe") String farbe,
-                           @FormParam("ps") int ps){
-        Auto a = new Auto(id, fgnr,kennzeichen, halter, hersteller, modell, farbe, ps);
-        
+            @FormParam("fahrgestellnummer") int fgnr,
+            @FormParam("kennzeichen") String kennzeichen,
+            @FormParam("halter") String halter,
+            @FormParam("hersteller") String hersteller,
+            @FormParam("modell") String modell,
+            @FormParam("farbe") String farbe,
+            @FormParam("ps") int ps) {
+        Auto a = new Auto(id, fgnr, kennzeichen, halter, hersteller, modell, farbe, ps);
+
         System.out.println(a.toString());
         try {
             Zugriffsverwaltung zgriff = new Zugriffsverwaltung();
@@ -121,9 +119,23 @@ public class AutoService {
 
         } catch (Exception e) {
         }
-        return "Auto wurde erstellt!"+"<br><br><a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Hier geht es zur Startseite</a>";
+        return "Auto wurde geändert!" + "<br><br><a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Hier geht es zur Startseite</a>";
     }
-    
+
+    @POST
+    @Path("/delete")
+    @Produces(MediaType.TEXT_HTML)
+    public String deleteAuto(@FormParam("id") int id) {
+
+        try {
+
+            Zugriffsverwaltung zugriff = new Zugriffsverwaltung();
+            zugriff.deleteAuto(id);
+        } catch (Exception e) {
+        }
+
+        return "Auto wurde gelöscht!" + "<br><br><a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Hier geht es zur Startseite</a>";
+    }
 
     @GET
     @Path("/message")

@@ -113,7 +113,7 @@ public class DBZugriff {
             
             int anzahl = stmt.executeUpdate();
             
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
     
@@ -131,14 +131,14 @@ public class DBZugriff {
         try {
 
             String sqlString = "UPDATE Auto "
-                    + "SET Fahrgestellnummer= ?,"
-                    + "Kennzeichen= ?,"
-                    + "Halter= ? ,"
-                    + "Hersteller= ?,"
-                    + "Modell= ? ,"
-                    + "Farbe= ?,"
-                    + "PS = ?"
-                    + "WHERE auto_id = ?;";
+                    + " SET Fahrgestellnummer= ?,"
+                    + " Kennzeichen= ?,"
+                    + " Halter= ? ,"
+                    + " Hersteller= ?,"
+                    + " Modell= ? ,"
+                    + " Farbe= ?,"
+                    + " PS = ?"
+                    + " WHERE auto_id = ?;";
             
             PreparedStatement stmt = conn.prepareStatement(sqlString);
             stmt.setInt(1, fahrgestellnummer);
@@ -148,12 +148,28 @@ public class DBZugriff {
             stmt.setString(5,modell );
             stmt.setString(6,farbe);
             stmt.setInt(7,ps);
-            stmt.setInt(9, id);
-            
+            stmt.setInt(8, id);
+            System.out.println(stmt.toString());
             int anzahl = stmt.executeUpdate();
             
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
     
+     
+     public void deleteAuto(Connection conn, int id){
+         
+         try {
+             String sqlString= "DELETE FROM Auto WHERE auto_id=?";
+             PreparedStatement stmt = conn.prepareStatement(sqlString);
+             stmt.setInt(1, id);
+             
+             int anzahl = stmt.executeUpdate();
+         } catch (SQLException e) {
+         }
+         
+         
+     }
+     
+     
 }

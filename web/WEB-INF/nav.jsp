@@ -9,5 +9,6 @@
         <li><a href="autoliste.jsp">Autoliste</a></li>
         <li><a href="autoerstellen.jsp">Auto erstellen</a></li>
         <li><a href="autobearbeiten.jsp">Auto bearbeiten</a></li>
+        <li><a href="autodelete.jsp">Auto löschen</a></li>
     </ul> 
 </div>
