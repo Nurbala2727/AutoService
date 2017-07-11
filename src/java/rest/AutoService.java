@@ -68,7 +68,7 @@ public class AutoService {
             @PathParam("farbe") String farbe,
             @PathParam("ps") int ps) {
 
-        Auto a = new Auto(fgnr, hersteller, model, farbe, ps, halter);
+        Auto a = new Auto(fgnr,kennzeichen,halter, hersteller, model, farbe, ps );
         try {
             Zugriffsverwaltung zgriff = new Zugriffsverwaltung();
             zgriff.setAuto(a);
@@ -81,6 +81,48 @@ public class AutoService {
     
     
     
+    @POST
+    @Path("/anlegen")
+    @Produces(MediaType.TEXT_HTML)
+    public String setAutoNeu(@FormParam("fahrgestellnummer") int fgnr,
+                           @FormParam("kennzeichen") String kennzeichen,
+                           @FormParam("halter") String halter,
+                           @FormParam("hersteller") String hersteller,
+                           @FormParam("modell") String modell,
+                           @FormParam("farbe") String farbe,
+                           @FormParam("ps") int ps){
+        Auto a = new Auto(fgnr,kennzeichen, halter, hersteller, modell, farbe, ps);
+        try {
+            Zugriffsverwaltung zgriff = new Zugriffsverwaltung();
+            zgriff.setAuto(a);
+
+        } catch (Exception e) {
+        }
+        return "Auto wurde erstellt!"+"<a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Zurück zur Startseite</a>";
+    }
+    
+    @POST
+    @Path("/update")
+    @Produces(MediaType.TEXT_HTML)
+    public String updateAuto(@FormParam("id") int id,
+                           @FormParam("fahrgestellnummer") int fgnr,
+                           @FormParam("kennzeichen") String kennzeichen,
+                           @FormParam("halter") String halter,
+                           @FormParam("hersteller") String hersteller,
+                           @FormParam("modell") String modell,
+                           @FormParam("farbe") String farbe,
+                           @FormParam("ps") int ps){
+        Auto a = new Auto(id, fgnr,kennzeichen, halter, hersteller, modell, farbe, ps);
+        
+        System.out.println(a.toString());
+        try {
+            Zugriffsverwaltung zgriff = new Zugriffsverwaltung();
+            zgriff.updateAuto(a);
+
+        } catch (Exception e) {
+        }
+        return "Auto wurde erstellt!"+"<br><br><a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Hier geht es zur Startseite</a>";
+    }
     
 
     @GET

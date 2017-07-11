@@ -7,7 +7,6 @@
     <ul>
         <li><a href="index.jsp">Home</a></li>
         <li><a href="autoliste.jsp">Autoliste</a></li>
-        <li><a href="autoanzeigen.jsp">Auto anzeigen</a></li>
         <li><a href="autoerstellen.jsp">Auto erstellen</a></li>
         <li><a href="autobearbeiten.jsp">Auto bearbeiten</a></li>
     </ul> 

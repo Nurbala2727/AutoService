@@ -11,30 +11,7 @@
         <%@include file="WEB-INF/head_data.jsp" %>
         <script> 
         window.onload=listeUpdate();
-        function listeUpdate(){
-            
-            
-            $.getJSON("http://localhost:8084/AutoServiceIHKGfI/rest/autoService/liste",
-                            function(data){ 
-                                
-                                        var zurueck;
-
-                                        $.each(data, function(index, value){
-
-                                            back= "<tr id=\"row\">\n\
-                                                    <td align=\"center\">"+value.fahrgestellnummer+"</td>\n\
-                                                    <td align=\"center\">"+value.hersteller+"</td>\n\
-                                                    <td align=\"center\">"+value.modell+"</td>\n\
-                                                    <td align=\"center\">"+value.farbe+"</td>\n\
-                                                    <td align=\"center\">"+value.ps+"</td>\n\
-                                                    <td align=\"center\">"+value.halter+"</td>\n\
-                                                 </tr>";
-                                            
-                                            $("#tablehead").after(back);
-                                        });            
-            }); 
-        };
-       
+          <%@include file="WEB-INF/function.js" %>    
         </script>
     </head>
     <body>
@@ -48,12 +25,15 @@
 
             <table id="table">
                 <tr id="tablehead">
+                    <th class="th">Auto-ID</th>
                     <th class="th">Fahrgestellnummer</th>
+                    <th class="th">Kennzeichen</th> 
+                    <th class="th">Halter</th>
                     <th class="th">Hersteller</th>
                     <th class="th">Modelname</th>
                     <th class="th">Farbe</th>
                     <th class="th">PS</th>
-                    <th class="th">Halter</th>
+                   
                 </tr>
                 
             </table>

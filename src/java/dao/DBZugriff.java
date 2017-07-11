@@ -37,12 +37,14 @@ public class DBZugriff {
         try {
             while (rs.next()) {
                 Auto auto = new Auto();
-                auto.setFahrgestellnummer(rs.getInt(1));
-                auto.setHersteller(rs.getString(2));
-                auto.setModell(rs.getString(3));
-                auto.setFarbe(rs.getString(4));
-                auto.setPs(rs.getInt(5));
-                auto.setHalter(rs.getString(6));
+                auto.setAuto_id(rs.getInt(1));
+                auto.setFahrgestellnummer(rs.getInt(2));
+                auto.setKennzeichen(rs.getString(3));
+                auto.setHalter(rs.getString(4));
+                auto.setHersteller(rs.getString(5));
+                auto.setModell(rs.getString(6));
+                auto.setFarbe(rs.getString(7));
+                auto.setPs(rs.getInt(8));
                 autoliste.add(auto);
             }
         } catch (SQLException e) {
@@ -67,13 +69,15 @@ public class DBZugriff {
             ResultSet rs = stm.executeQuery(sqlString);
 
             while (rs.next()) {
-
-                auto.setFahrgestellnummer(rs.getInt(1));
-                auto.setHersteller(rs.getString(2));
-                auto.setModell(rs.getString(3));
-                auto.setFarbe(rs.getString(4));
-                auto.setPs(rs.getInt(5));
-                auto.setHalter(rs.getString(6));
+                auto.setAuto_id(rs.getInt(1));
+                auto.setFahrgestellnummer(rs.getInt(2));
+                auto.setKennzeichen(rs.getString(3));
+                auto.setHalter(rs.getString(4));
+                auto.setHersteller(rs.getString(5));
+                auto.setModell(rs.getString(6));
+                auto.setFarbe(rs.getString(7));
+                auto.setPs(rs.getInt(8));
+                
 
             }
         } catch (SQLException e) {
@@ -85,6 +89,7 @@ public class DBZugriff {
 
     public void setAuto(Auto a, Connection conn) {
         int fahrgestellnummer = a.getFahrgestellnummer();
+        String kennzeichen = a.getKennzeichen();
         String hersteller = a.getHersteller();
         String modell = a.getModell();
         String farbe = a.getFarbe();
@@ -94,15 +99,16 @@ public class DBZugriff {
         try {
 
             String sqlString = "INSERT INTO Auto "
-                    + " (Fahrgestellnummer, Hersteller, Modell, Farbe, PS, Besitzer) "
-                    + " VALUES (?,?,?,?,?,? )";
+                    + " (Fahrgestellnummer,Kennzeichen,Halter, Hersteller, Modell, Farbe, PS) "
+                    + " VALUES (?,?,?,?,?,?,? )";
             PreparedStatement stmt = conn.prepareStatement(sqlString);
             stmt.setInt(1, fahrgestellnummer);
-            stmt.setString( 2, hersteller );
-            stmt.setString(3,modell);
-            stmt.setString(4,farbe);
-            stmt.setInt(5,ps );
-            stmt.setString(6,halter);
+            stmt.setString( 2, kennzeichen );
+            stmt.setString(3,halter);
+            stmt.setString(4,hersteller);
+            stmt.setString(5,modell );
+            stmt.setString(6,farbe);
+            stmt.setInt(7,ps);
             
             
             int anzahl = stmt.executeUpdate();
@@ -110,4 +116,44 @@ public class DBZugriff {
         } catch (Exception e) {
         }
     }
+    
+    
+     public void updateAuto(Auto a, Connection conn) {
+        int id = a.getAuto_id();
+        int fahrgestellnummer = a.getFahrgestellnummer();
+        String kennzeichen = a.getKennzeichen();
+        String halter = a.getHalter();
+        String hersteller = a.getHersteller();
+        String modell = a.getModell();
+        String farbe = a.getFarbe();
+        int ps = a.getPs();
+         System.out.println(a.toString());
+        try {
+
+            String sqlString = "UPDATE Auto "
+                    + "SET Fahrgestellnummer= ?,"
+                    + "Kennzeichen= ?,"
+                    + "Halter= ? ,"
+                    + "Hersteller= ?,"
+                    + "Modell= ? ,"
+                    + "Farbe= ?,"
+                    + "PS = ?"
+                    + "WHERE auto_id = ?;";
+            
+            PreparedStatement stmt = conn.prepareStatement(sqlString);
+            stmt.setInt(1, fahrgestellnummer);
+            stmt.setString( 2, kennzeichen );
+            stmt.setString(3,halter);
+            stmt.setString(4,hersteller);
+            stmt.setString(5,modell );
+            stmt.setString(6,farbe);
+            stmt.setInt(7,ps);
+            stmt.setInt(9, id);
+            
+            int anzahl = stmt.executeUpdate();
+            
+        } catch (Exception e) {
+        }
+    }
+    
 }
