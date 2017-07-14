@@ -161,8 +161,8 @@ function autoInListeEintragen() {
 function pruefen() {
 
     var text = "Eingabe: ";
-    var check = false;
-
+    var checkf = false;
+    var checkk = false;
 
     var urlfgnr = "http://localhost:8084/AutoServiceIHKGfI/rest/autoService/pruefe/fgnr/" + $("#fahrgestellnummer").val();
     console.log(urlfgnr);
@@ -174,13 +174,13 @@ function pruefen() {
             switch (value) {
                 case 0:
                     console.log("case0 fgnr");
-                    check = true;
+                    checkf = true;
                     text += "Eingabe Fahrgestellnummer ist korrekt.";
                     console.log(text);
                     break;
                 case 1:
                     console.log("case1 fgnr");
-                    check = false;
+                    checkf = false;
                     text += "Fahrgestellnummer ist schon in der DB vorhanden.";
                     console.log(text);
                     break;
@@ -204,12 +204,12 @@ function pruefen() {
             switch (value) {
                 case 0:
                     console.log("case 0 kzeichen");
-                    check = true;
+                    checkk = true;
                     text += "Eingabe Kennzeichen ist korrekt.";
                     break;
                 case 1:
                     console.log("case 1 kzeichen");
-                    check = false;
+                    checkk = false;
                     console.log(text);
                     text += "Kennzeichen ist schon in der DB vorhanden.";
                     console.log(text);
@@ -226,7 +226,7 @@ function pruefen() {
     ;
     
     
-    if (check === true) {
+    if ((checkk === true) && (checkf === true)) {
             console.log(text+"correct");
             alter(text);
             $("#pruefe").css(" visibility", "visible");
