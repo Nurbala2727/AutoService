@@ -12,7 +12,7 @@ package dto;
 public class Auto {
     
     private int auto_id;
-    private int fahrgestellnummer;
+    private String fahrgestellnummer;
     private String kennzeichen;
     private String halter;
     private String hersteller;
@@ -25,7 +25,7 @@ public class Auto {
         
     }
 
-    public Auto(int fahrgestellnummer, String kennzeichen, String halter, String hersteller, String modell, String farbe, int ps) {
+    public Auto(String fahrgestellnummer, String kennzeichen, String halter, String hersteller, String modell, String farbe, int ps) {
         this.fahrgestellnummer = fahrgestellnummer;
         this.kennzeichen = kennzeichen;
         this.halter = halter;
@@ -35,7 +35,7 @@ public class Auto {
         this.ps = ps;
     }
 
-    public Auto(int auto_id, int fahrgestellnummer, String kennzeichen, String halter, String hersteller, String modell, String farbe, int ps) {
+    public Auto(int auto_id, String fahrgestellnummer, String kennzeichen, String halter, String hersteller, String modell, String farbe, int ps) {
         this.auto_id = auto_id;
         this.fahrgestellnummer = fahrgestellnummer;
         this.kennzeichen = kennzeichen;
@@ -57,11 +57,11 @@ public class Auto {
         this.auto_id = auto_id;
     }
 
-    public int getFahrgestellnummer() {
+    public String getFahrgestellnummer() {
         return fahrgestellnummer;
     }
 
-    public void setFahrgestellnummer(int fahrgestellnummer) {
+    public void setFahrgestellnummer(String fahrgestellnummer) {
         this.fahrgestellnummer = fahrgestellnummer;
     }
 

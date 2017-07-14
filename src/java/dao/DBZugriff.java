@@ -38,7 +38,7 @@ public class DBZugriff {
             while (rs.next()) {
                 Auto auto = new Auto();
                 auto.setAuto_id(rs.getInt(1));
-                auto.setFahrgestellnummer(rs.getInt(2));
+                auto.setFahrgestellnummer(rs.getString(2));
                 auto.setKennzeichen(rs.getString(3));
                 auto.setHalter(rs.getString(4));
                 auto.setHersteller(rs.getString(5));
@@ -55,7 +55,7 @@ public class DBZugriff {
 
     }
 
-    public Auto getAuto(Connection conn, int fgnr) throws SQLException {
+    public Auto getAuto(Connection conn, String fgnr) throws SQLException {
 
         Auto auto = new Auto();
 
@@ -70,7 +70,7 @@ public class DBZugriff {
 
             while (rs.next()) {
                 auto.setAuto_id(rs.getInt(1));
-                auto.setFahrgestellnummer(rs.getInt(2));
+                auto.setFahrgestellnummer(rs.getString(2));
                 auto.setKennzeichen(rs.getString(3));
                 auto.setHalter(rs.getString(4));
                 auto.setHersteller(rs.getString(5));
@@ -88,7 +88,7 @@ public class DBZugriff {
     }
 
     public void setAuto(Auto a, Connection conn) {
-        int fahrgestellnummer = a.getFahrgestellnummer();
+        String fahrgestellnummer = a.getFahrgestellnummer();
         String kennzeichen = a.getKennzeichen();
         String hersteller = a.getHersteller();
         String modell = a.getModell();
@@ -102,7 +102,7 @@ public class DBZugriff {
                     + " (Fahrgestellnummer,Kennzeichen,Halter, Hersteller, Modell, Farbe, PS) "
                     + " VALUES (?,?,?,?,?,?,? )";
             PreparedStatement stmt = conn.prepareStatement(sqlString);
-            stmt.setInt(1, fahrgestellnummer);
+            stmt.setString(1, fahrgestellnummer);
             stmt.setString( 2, kennzeichen );
             stmt.setString(3,halter);
             stmt.setString(4,hersteller);
@@ -120,7 +120,7 @@ public class DBZugriff {
     
      public void updateAuto(Auto a, Connection conn) {
         int id = a.getAuto_id();
-        int fahrgestellnummer = a.getFahrgestellnummer();
+        String fahrgestellnummer = a.getFahrgestellnummer();
         String kennzeichen = a.getKennzeichen();
         String halter = a.getHalter();
         String hersteller = a.getHersteller();
@@ -141,7 +141,7 @@ public class DBZugriff {
                     + " WHERE auto_id = ?;";
             
             PreparedStatement stmt = conn.prepareStatement(sqlString);
-            stmt.setInt(1, fahrgestellnummer);
+            stmt.setString(1, fahrgestellnummer);
             stmt.setString( 2, kennzeichen );
             stmt.setString(3,halter);
             stmt.setString(4,hersteller);
@@ -151,6 +151,7 @@ public class DBZugriff {
             stmt.setInt(8, id);
             System.out.println(stmt.toString());
             int anzahl = stmt.executeUpdate();
+            System.out.println(anzahl);
             
         } catch (SQLException e) {
         }
@@ -172,4 +173,76 @@ public class DBZugriff {
      }
      
      
+     public int getAnzahlAutos(Connection conn){
+         
+          int anzahl=0;
+         try {
+             
+            
+             String sqlString="SELECT count(*) FROM Auto";
+             
+             Statement stmt =conn.createStatement();
+             
+             ResultSet rs = stmt.executeQuery(sqlString);
+             
+             while (rs.next()) {
+                 
+                anzahl=rs.getInt(1);
+             }
+             
+         } catch (Exception e) {
+         }
+         return anzahl;
+     }
+     
+     
+     
+     
+     public int pruefeFGNR(Connection conn, String fgnr){
+         
+         int anzahl=0;
+         
+         try {
+             String sqlString="SELECT COUNT(*) FROM Auto WHERE fahrgestellnummer=?";
+             
+             PreparedStatement stmt =conn.prepareStatement(sqlString);
+             
+            stmt.setString(1, fgnr);
+            System.out.println(stmt.toString());
+            ResultSet rs=stmt.executeQuery();
+            
+            while(rs.next()){
+                anzahl=rs.getInt(1);
+            }
+         } catch (Exception e) {
+         }
+         
+         System.out.println("Anzahl der vorhandenen Fahrgestellnummern:"+anzahl);
+         return anzahl;
+     }
+     
+     
+      public int pruefeKennzeichen(Connection conn, String kennzeichen){
+         
+         int anzahl=0;
+         
+         try {
+             String sqlString="SELECT COUNT(*) FROM Auto WHERE kennzeichen=?";
+             
+             PreparedStatement stmt =conn.prepareStatement(sqlString);
+             
+            stmt.setString(1, kennzeichen);
+            System.out.println(stmt.toString());
+            ResultSet rs=stmt.executeQuery();
+            
+            while(rs.next()){
+                anzahl=rs.getInt(1);
+            }
+         } catch (Exception e) {
+         }
+         
+         System.out.println("Anzahl der vorhandenen Kennzeichen:"+anzahl);
+         
+         return anzahl;
+     }
 }

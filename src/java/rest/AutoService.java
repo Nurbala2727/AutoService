@@ -42,7 +42,7 @@ public class AutoService {
     @GET
     @Path("/auto/{fgnr}")
     @Produces({"application/json"})
-    public String getAuto(@PathParam("fgnr") int fgnr) {
+    public String getAuto(@PathParam("fgnr") String fgnr) {
         String autoS = "";
         Auto auto = new Auto();
         try {
@@ -60,7 +60,7 @@ public class AutoService {
     @POST
     @Path("/anlegen")
     @Produces(MediaType.TEXT_HTML)
-    public String setAutoNeu(@FormParam("fahrgestellnummer") int fgnr,
+    public String setAutoNeu(@FormParam("fahrgestellnummer") String fgnr,
             @FormParam("kennzeichen") String kennzeichen,
             @FormParam("halter") String halter,
             @FormParam("hersteller") String hersteller,
@@ -74,14 +74,14 @@ public class AutoService {
 
         } catch (Exception e) {
         }
-        return "Auto wurde erstellt!" + "<br><br><a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Zurück zur Startseite</a>";
+        return "Auto wurde erstellt!" + "<br><br><a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Hier geht es zur Startseite</a>";
     }
 
     @POST
     @Path("/update")
     @Produces(MediaType.TEXT_HTML)
     public String updateAuto(@FormParam("id") int id,
-            @FormParam("fahrgestellnummer") int fgnr,
+            @FormParam("fahrgestellnummer") String fgnr,
             @FormParam("kennzeichen") String kennzeichen,
             @FormParam("halter") String halter,
             @FormParam("hersteller") String hersteller,
@@ -97,7 +97,7 @@ public class AutoService {
 
         } catch (Exception e) {
         }
-        return "Auto wurde geändert!" + "<br><br><a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Hier geht es zur Startseite</a>";
+        return "Auto wurde ge&auml;ndert!" + "<br><br><a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Hier geht es zur Startseite</a>";
     }
 
     @POST
@@ -112,9 +112,64 @@ public class AutoService {
         } catch (Exception e) {
         }
 
-        return "Auto wurde gelöscht!" + "<br><br><a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Hier geht es zur Startseite</a>";
+        return "Auto wurde gel&ouml;scht!" + "<br><br><a href=\"http://localhost:8084/AutoServiceIHKGfI/index.jsp\">Hier geht es zur Startseite</a>";
     }
 
+    
+    @GET
+    @Path("/anzahl")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getAnzahl() {
+        
+        int anzahl=0;
+        try {
+            Zugriffsverwaltung zugriff = new Zugriffsverwaltung();
+            anzahl=zugriff.getAnzahl();
+            
+        } catch (Exception e) {
+        }
+        String str=Integer.toString(anzahl);
+        return str;
+                
+                
+    }
+    
+    
+    @GET
+    @Path("/pruefe/fgnr/{fgnr}")
+    @Produces({"application/json"})
+    public String istVorhandenFGNR(@PathParam("fgnr") String fgnr) {
+        System.out.println("FGMR:"+fgnr);
+        int anzahl=0;
+        try {
+            Zugriffsverwaltung zugriff = new Zugriffsverwaltung();
+            anzahl=zugriff.pruefeFGNR(fgnr);
+            
+        } catch (Exception e) {
+        }
+        String str="{"+"\"vorhanden\" :"+anzahl+"}";
+        return str;
+                
+                
+    }
+    @GET
+    @Path("/pruefe/kennzeichen/{kennzeichen}")
+    @Produces({"application/json"})
+    public String istVorhandenKennzeichen(@PathParam("kennzeichen") String kennzeichen) {
+        
+        int anzahl=0;
+        try {
+            Zugriffsverwaltung zugriff = new Zugriffsverwaltung();
+            anzahl=zugriff.pruefeKennzeichen(kennzeichen);
+            
+        } catch (Exception e) {
+        }
+        String str="{"+"\"vorhanden\" :"+anzahl+"}";
+        return str;
+                
+                
+    }
+    
     @GET
     @Path("/message")
     @Produces(MediaType.TEXT_PLAIN)
@@ -122,5 +177,8 @@ public class AutoService {
         return "Hallo i bims dem Denis ";
 
     }
+    
+    
+    
 
 }

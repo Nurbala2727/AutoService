@@ -8,25 +8,58 @@
 <!DOCTYPE html>
 <html>
     <head>
-       <%@include file="WEB-INF/head_data.jsp" %>
+        <%@include file="WEB-INF/head_data.jsp" %>
+
+        <script>
+            <%@include file="WEB-INF/function.js" %>
+           window.onload = indexAktuell();
+        </script>
     </head>
     <body>
 
         <%@include file="WEB-INF/header.jsp" %>
-        
+
         <%@include file="WEB-INF/nav.jsp" %>
         <div class="inhalt">
-            
+
             <h1> Willkommen beim Auto Service der IHK GfI</h1>
-            
-            
-            <p class="headline">Informationen</p>
-            <p class="headline">Anzahl aller Autos</p>
-            <p class="headline">In bearbeitung</p>
-            <p class="headline">Bereit zur Abholung</p>
-            <p class="headline">Problemmeldungen!!!</p>
-            
-            
+
+
+            <p >
+                <div class="headline">
+                    Informationen<br>
+                </div>
+                Hier finden Sie aktuelle Informationen 
+             </p>
+
+            <p >
+                <div class="headline">
+                    Anzahl aller Autos<br>
+                </div>
+                <a href="autoliste.jsp" id="linkListe"></a>
+             </p>
+
+
+
+            <p >
+                <div class="headline">
+                    In bearbeitung<br>
+                </div>
+            </p>
+
+            <p >
+                <div class="headline">
+                    Bereit zur Abholung<br>
+                </div>
+            </p>
+
+            <p >
+                <div class="headline">
+                    Problemmeldungen!!!<br>
+                </div>
+            </p>
         </div>
+
+
     </body>
 </html>

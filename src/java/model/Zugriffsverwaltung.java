@@ -28,7 +28,7 @@ public class Zugriffsverwaltung {
 
     }
 
-    public Auto getAuto(int fgnr) throws Exception {
+    public Auto getAuto(String fgnr) throws Exception {
 
         Datenbank db = new Datenbank();
         Connection conn = db.getConnection();
@@ -62,5 +62,29 @@ public class Zugriffsverwaltung {
         DBZugriff dbz = new DBZugriff();
         dbz.deleteAuto(conn,id);
 
+    }
+    
+    
+    public int getAnzahl() throws Exception{
+        Datenbank db = new Datenbank();
+        Connection conn = db.getConnection();
+        DBZugriff dbz = new DBZugriff();
+        return dbz.getAnzahlAutos(conn);
+        
+    }
+    
+    
+    public int pruefeFGNR(String fgnr) throws Exception{
+        Datenbank db = new Datenbank();
+        Connection conn = db.getConnection();
+        DBZugriff dbz = new DBZugriff();
+        return dbz.pruefeFGNR(conn, fgnr);
+    }
+    
+     public int pruefeKennzeichen(String kennzeichen) throws Exception{
+        Datenbank db = new Datenbank();
+        Connection conn = db.getConnection();
+        DBZugriff dbz = new DBZugriff();
+        return dbz.pruefeKennzeichen(conn, kennzeichen);
     }
 }

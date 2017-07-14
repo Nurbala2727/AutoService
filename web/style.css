@@ -33,6 +33,9 @@ and open the template in the editor.
     width: 10%;
 }
 
+#anlegen{
+    visibility: hidden;
+}
 
 #logo   {
     float:right}

@@ -29,9 +29,9 @@
                     <legend>KFZ Informationen:</legend>
                     
                     Fahrgestellnummer:<br>
-                    <input type="text" name="fahrgestellnummer" id="fahrgestellnummer" size="50"><br>
+                    <input type="text" name="fahrgestellnummer" id="fahrgestellnummer" size="50" pattern="[0-9A-HJ-NPR-Z]{17}"><br>
                     Kennzeichen:<br>
-                    <input type="text" name="kennzeichen" id="kennzeichen" size="50" ><br>
+                    <input type="text" name="kennzeichen" id="kennzeichen" size="50" pattern="[A-ZÜÖÄ]{1,3}[A-Z]{1,2}[1-9]{1}[0-9]{0,3}"><br>
                     Halter:<br>
                     <input type="text" name="halter" id="halter" size="50"><br>
                     Hersteller:<br>
@@ -43,7 +43,9 @@
                     PS:<br>
                     <input type="text" name="ps" id="ps" size="50"><br><br>
                     
-                    <input type="submit" value="Anlegen" >
+                    <input type="button" name="pruefe" id="pruefe" value="Prüfen" onclick="pruefen()"
+                    
+                    <input type="submit" id="anlegen" name="alegen" value="Anlegen">
                 </fieldset>
             </form> 
             <p id="auto_ergebnis">

@@ -14,7 +14,7 @@ function listeUpdate() {
 
                 $.each(data, function (index, value) {
 
-                   var back = "<tr id=\"row\">\n\
+                    var back = "<tr id=\"row\">\n\
                                 <td align=\"center\">" + value.auto_id + "</td>\n\
                                 <td align=\"center\">" + value.fahrgestellnummer + "</td>\n\
                                 <td align=\"center\">" + value.kennzeichen + "</td>\n\
@@ -48,7 +48,8 @@ function suchen() {
         $("#suche_ergebnis").html(html);
     });
 
-};
+}
+;
 
 
 
@@ -84,7 +85,19 @@ function erstellen() {
     var ps = $("#ps").val();
 
     $.ajax({
-        url: "http://localhost:8084/AutoServiceIHKGfI/rest/autoService/anlegen/" + fahrgestellnummer + "/" + kennzeichen + "/" + halter + "/" + hersteller + "/" + model + "/" + farbe + "/" + ps,
+        url: "http://localhost:8084/AutoServiceIHKGfI/rest/autoService/anlegen/"
+                + fahrgestellnummer
+                + "/"
+                + kennzeichen
+                + "/"
+                + halter
+                + "/"
+                + hersteller
+                + "/"
+                + model
+                + "/"
+                + farbe
+                + "/" + ps,
         success: function (data) {
             anzeigenauto();
             alert(data);
@@ -112,9 +125,9 @@ function autoInListeEintragen() {
                 case "fahrgestellnummer":
                     $("#fahrgestellnummer").val(value);
                     break;
-                 case "kennzeichen":
+                case "kennzeichen":
                     $("#kennzeichen").val(value);
-                    break;    
+                    break;
                 case "halter":
                     $("#halter").val(value);
                     break;
@@ -142,9 +155,97 @@ function autoInListeEintragen() {
 
 
     });
-};
+}
+;
+
+function pruefen() {
+
+    var text = "Eingabe: ";
+    var check = false;
 
 
-function remove(){
+    var urlfgnr = "http://localhost:8084/AutoServiceIHKGfI/rest/autoService/pruefe/fgnr/" + $("#fahrgestellnummer").val();
+    console.log(urlfgnr);
+
+
+    var jqxhr = $.getJSON(urlfgnr, function (data) {
+        console.log(data);
+        $.each(data, function (key, value) {
+            switch (value) {
+                case 0:
+                    console.log("case0 fgnr");
+                    check = true;
+                    text += "Eingabe Fahrgestellnummer ist korrekt.";
+                    console.log(text);
+                    break;
+                case 1:
+                    console.log("case1 fgnr");
+                    check = false;
+                    text += "Fahrgestellnummer ist schon in der DB vorhanden.";
+                    console.log(text);
+                    break;
+            }
+        });
+    })
+            .done(function () {
+                console.log("Check FGNR done");
+            })
+            .fail(function () {
+                console.log("Check FGNR fail");
+            });
+
+
+
+    var urlkennzeichen = "http://localhost:8084/AutoServiceIHKGfI/rest/autoService/pruefe/kennzeichen/" + $("#kennzeichen").val();
+    console.log(urlkennzeichen);
+    var jqxhrz = $.getJSON(urlkennzeichen, function (data) {
+        console.log(data);
+        $.each(data, function (key, value) {
+            switch (value) {
+                case 0:
+                    console.log("case 0 kzeichen");
+                    check = true;
+                    text += "Eingabe Kennzeichen ist korrekt.";
+                    break;
+                case 1:
+                    console.log("case 1 kzeichen");
+                    check = false;
+                    console.log(text);
+                    text += "Kennzeichen ist schon in der DB vorhanden.";
+                    console.log(text);
+                    break;
+            }
+        });
+    })
+        .done(function () {
+        console.log("Check Kennzeichen done");
+        })
+        .fail(function () {
+        console.log("Check Kennzeichen fail");
+        })
+    ;
     
+    
+    if (check === true) {
+            console.log(text+"correct");
+            alter(text);
+            $("#pruefe").css(" visibility", "visible");
+        } else {
+            console.log(text+"fail");
+            alert(text);
+        }
+
+}
+
+
+function indexAktuell() {
+    console.log("test");
+    $.ajax({
+        url: "http://localhost:8084/AutoServiceIHKGfI/rest/autoService/anzahl",
+        success: function (data) {
+            console.log("test2");
+            $("#linkListe").html(data);
+        }
+    });
+
 }
